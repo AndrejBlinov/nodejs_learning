@@ -71,3 +71,15 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+1) устанавливаем nmp и библиотеку node.js. Все необходимые лайнчеры можно найти https://docs.npmjs.com/downloading-and-installing-node-js-and-npm 
+2) разворачиваем CLI nest .В кнсоли прописываем   npm i -g @nestjs/cli 
+3) после этого папка проекта должна заработать. Для того, чтобы запустить проект вводим в консоли nmp run start:dev
+
+4) разворачиваем БД. 
+  4.1 устанавливаем зависимости. в консоли npm install --save @nestjs/typeorm typeorm mysql2
+  4.2 в консоли npm install --save pg pg-hstore
+  4.3 устанавливаем PgAdmin https://www.pgadmin.org/download/pgadmin-4-windows/ или OpenServer или любую другую оболочку для работы с БД
+  4.4 вводим данные подключение к БД в файл src/appModule.ts в массив TypeOrmModule.forRoot. Если используется уже имеющеяся база, то менять ничего не надо.
+  4.5 устанавливаем конфигуратор npm i @nestjs/config
