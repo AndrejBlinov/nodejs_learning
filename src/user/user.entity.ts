@@ -1,22 +1,28 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class User  {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ type: 'text'})
     name: string;
 
-    @Column()
+    @Column({ type: 'varchar' , length: 10, unique: true})
     login: string;
 
-    @Column()
+    @Column({ type: 'text' })
     password: string;
 
-    @Column()
+    @Column({ type: 'text' })
+    email: string;
+
+    @Column({ type: 'boolean', default: false})
     banned: boolean;
 
-    @Column()
-    bannedReason: string
+    @Column({ type: 'text', default: "" })
+    bannedReason: string;
+
+    @Column({ type: 'integer', default: 1})
+    role: number;
 }
