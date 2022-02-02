@@ -83,3 +83,5 @@ Nest is [MIT licensed](LICENSE).
   4.3 устанавливаем PgAdmin https://www.pgadmin.org/download/pgadmin-4-windows/ или OpenServer или любую другую оболочку для работы с БД
   4.4 вводим данные подключение к БД в файл src/appModule.ts в массив TypeOrmModule.forRoot. Если используется уже имеющеяся база, то менять ничего не надо.
   4.5 устанавливаем конфигуратор npm i @nestjs/config
+
+5) Документация. Устанавливаем пакет  npm i @nestjs/swagger swagger-ui-express 
