@@ -18,9 +18,4 @@ export class UserRoles  {
     @Column( {type: 'integer'} )
     public roleId!: number;
 
-    @ManyToOne(() => User, user => user.userRoles)
-    public User!: User;
-
-    @ManyToOne(() => Roles, roles => roles.userRoles)
-    public Roles!: Roles;
 }

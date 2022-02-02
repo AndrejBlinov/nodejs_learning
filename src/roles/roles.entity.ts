@@ -18,7 +18,4 @@ export class Roles  {
     @Column( {type: 'varchar' , length: 10, unique: true} )
     value: number;
 
-    @OneToMany(() => UserRoles, userRoles => userRoles.Roles)
-    public userRoles!: UserRoles[];
-
 }
