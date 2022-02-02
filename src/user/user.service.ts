@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { RolesService } from 'src/roles/roles.service';
 import { Repository } from 'typeorm';
 import { createUserDto } from './dto/create-user-dto';
 import { User } from './user.entity';
@@ -10,6 +11,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private roleService: RolesService
   ) {}
 
   async findAll(): Promise<User[]> {
@@ -20,12 +22,18 @@ export class UserService {
     return this.userRepository.findOne(id);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.userRepository.delete(id);
+  async remove(id: number): Promise<number> {
+    const result = await this.userRepository.delete(id);
+    return result.affected;
   }
 
   async create(dto: createUserDto) {
     const user = await this.userRepository.insert(dto);
+    if (!dto['role']) {
+      const role = await this.roleService.getRolesByRolesId(1);
+      //await this.userRepository.update(user.raw.insertId, {role: role.id})
+    }
+    
     return user;
   }
 }

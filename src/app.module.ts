@@ -6,6 +6,8 @@ import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
 import { UserService } from "./user/user.service";
 import { UserController } from "./user/user.controller";
+import { RolesModule } from './roles/roles.module';
+import { UserRoles } from "./roles/user-roles-entity";
 
 @Module( {
     controllers: [UserController],
@@ -27,6 +29,8 @@ import { UserController } from "./user/user.controller";
             }),
             UserModule,
             TypeOrmModule.forFeature([User]),
+            RolesModule,
+            UserRoles,
     ]
 })
 export class AppModule {}

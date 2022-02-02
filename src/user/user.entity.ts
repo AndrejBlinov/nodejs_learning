@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UserRoles } from 'src/roles/user-roles-entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinTable } from 'typeorm';
 
 @Entity()
 export class User  {
@@ -12,7 +13,7 @@ export class User  {
     name: string;
 
     @ApiProperty({ example: 'Вася12653_', description: "Уникальный логин пользователя. Длинна 10 символов." })
-    @Column({ type: 'varchar' , length: 10, unique: true})
+    @Column({ type: 'varchar' , length: 20, unique: true})
     login: string;
 
     @ApiProperty({ example: 'Вася12653_', description: "Пароль пользователя" })
@@ -31,7 +32,6 @@ export class User  {
     @Column({ type: 'text', default: "" })
     bannedReason: string;
 
-    @ApiProperty({ example: '2', description: "ID Роли пользователя" })
-    @Column({ type: 'integer', default: 1})
-    role: number;
+    @OneToMany(() => UserRoles, userRoles => userRoles.User)
+    public userRoles!: UserRoles[];
 }
